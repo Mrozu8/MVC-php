@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" class="add-post" action="/php-mvc/admin/post-create">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Title</label>
+                    <input type="text" class="form-control custom-input" id="exampleInputEmail1" aria-describedby="emailHelp" name="title">
+                    {% if validate.title  %}
+                        {% for val in validate.title %}
+                            <small  class="form-text text-muted valid-message">{{ val }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label >Content</label>
+                    <textarea  class="form-control custom-input" rows="5"  aria-describedby="emailHelp" name="content"></textarea>
+                    {% if validate.content  %}
+                        {% for val in validate.content %}
+                            <small  class="form-text text-muted valid-message">{{ val }}</small>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary custom-button primary-bg"><i class="fas fa-plus"></i> Add new post</button>
+            </form>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            {% for post in posts %}
+                <div class="card custom-card custom-card">
+                    <div class="card-body">
+                        <div class="title">
+                            <h4>{{ post.title }}</h4>
+                        </div>
+                        <div class="content">
+                            <p>{{ post.content }}</p>
+                        </div>
+                        <hr>
+                        <div class="input-group button-group">
+                            <a href="/php-mvc/admin/{{ post.id }}/post-edit" class="btn btn-primary custom-button primary-bg p-right"><i class="fas fa-edit"></i></a>
+                            <form action="/php-mvc/admin/{{ post.id }}/post-delete" method="post">
+                                <button type="submit" class="btn btn-danger custom-button danger-bg"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row horizontal-center">
+        <div class="col-md-5">
+            <form class="form-signin auth-form" method="post" action="/php-mvc/create-account">
+                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+                <label for="inputname" class="sr-only">Name</label>
+                <input type="text" id="inputname" class="form-control custom-input" placeholder="Name" name="name"  autofocus>
+                {% if validate.name  %}
+                    {% for val in validate.name %}
+                        <small  class="form-text text-muted valid-message">{{ val }}</small>
+                    {% endfor %}
+                {% endif %}
+
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" id="inputEmail" class="form-control custom-input" placeholder="Email address" name="email" >
+                {% if validate.email  %}
+                    {% for val in validate.email %}
+                        <small  class="form-text text-muted valid-message">{{ val }}</small>
+                    {% endfor %}
+                {% endif %}
+
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control custom-input" placeholder="Password" name="password" >
+                {% if validate.password  %}
+                    {% for val in validate.password %}
+                        <small  class="form-text text-muted valid-message">{{ val }}</small>
+                    {% endfor %}
+                {% endif %}
+
+                <label for="inputCPassword" class="sr-only">Confirm password</label>
+                <input type="password" id="inputCPassword" class="form-control custom-input" placeholder="Confirm password" name="confirmed_password">
+
+                <button class="btn btn-lg btn-primary btn-block custom-button primary-bg" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

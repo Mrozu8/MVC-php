@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row horizontal-center">
+        <div class="col-md-5">
+            <form class="form-signin auth-form" method="post" action="/php-mvc/login-action">
+                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" id="inputEmail" class="form-control custom-input" placeholder="Email address (admin@admin.com)" name="email" >
+                {% if validate.email  %}
+                {% for val in validate.email %}
+                <small  class="form-text text-muted valid-message">{{ val }}</small>
+                {% endfor %}
+                {% endif %}
+
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control custom-input" placeholder="Password (admin)" name="password" >
+                {% if validate.password  %}
+                {% for val in validate.password %}
+                <small  class="form-text text-muted valid-message" >{{ val }}</small>
+                {% endfor %}
+                {% endif %}
+
+
+                <button class="btn btn-lg btn-primary btn-block custom-button primary-bg" type="submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
